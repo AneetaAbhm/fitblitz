@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fitness Daily Challenges</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section {
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            color: #f90;
+            margin-bottom: 10px;
+        }
+        
+        .section p {
+            color: #555;
+        }
+        
+        .section ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            color: #555;
+        }
+        
+        .challenge-box {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .challenge-box h3 {
+            color: #f90;
+        }
+        
+        .challenge-box p {
+            color: #555;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .accept-button {
+            background-color: #f90;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .days-counter {
+            text-align: center;
+            color: #f90;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Fitness Daily Challenges</h1>
+
+        <div class="section">
+            <div class="challenge-box">
+                <h2>Weight Gaining Plan</h2>
+                <div class="challenges">
+                    <div class="challenge">
+                        <h3>30-Day Plan</h3>
+                        <p>Perform weightlifting exercises for 30 minutes every day.</p>
+                        <p>Consume an additional 500 calories per day through nutrient-dense foods.</p>
+                        <p>Incorporate protein shakes into your post-workout routine.</p>
+                        <div class="button-container">
+                            <button class="accept-button" onclick="startChallenge('challenge1-counter', this, 30)">Accept Challenge</button>
+                            <div class="days-counter" id="challenge1-counter"></div>
+                        </div>
+                    </div>
+
+                    <div class="challenge">
+                        <h3>15-Day Plan</h3>
+                        <p>Increase your daily caloric intake by 300 calories.</p>
+                        <p>Focus on compound exercises like squats, deadlifts, and bench presses.</p>
+                        <p> Aim for at least 8 hours of sleep to aid muscle recovery.</p>
+                        <div class="button-container">
+                            <button class="accept-button" onclick="startChallenge('challenge2-counter', this, 15)">Accept Challenge</button>
+                            <div class="days-counter" id="challenge2-counter"></div>
+                        </div>
+                    </div>
+
+                    <div class="challenge">
+                        <h3>5-Day Plan</h3>
+                        <p>Consume a protein-rich meal within 30 minutes of completing your workout.</p>
+                        <p>Incorporate healthy fats into your diet, such as avocados and nuts.</p>
+                        <p>Track your progress and adjust your calorie intake accordingly.</p>
+                        <div class="button-container">
+                            <button class="accept-button" onclick="startChallenge('challenge3-counter', this, 5)">Accept Challenge</button>
+                            <div class="days-counter" id="challenge3-counter"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-box">
+                <h2>Weight Losing Plan</h2>
+                <div class="challenges">
+                    <div class="challenge">
+                        <h3>30-Day Plan</h3>
+                        <p>Engage in cardiovascular exercises for at least 45 minutes every day.</p>
+                        <p>Limit your daily calorie intake by 500 to create a calorie deficit.</p>
+                        <p>Incorporate high-intensity interval training (HIIT) into your workout routine.</p>
+                        <div class="button-container">
+                            <button class="accept-button" onclick="startChallenge('challenge4-counter', this, 30)">Accept Challenge</button>
+                            <div class="days-counter" id="challenge4-counter"></div>
+                        </div>
+                    </div>
+
+                    <div class="challenge">
+                        <h3>15-Day Plan</h3>
+                        <p>Include more vegetables and lean proteins in your meals.</p>
+                        <p>Reduce your consumption of processed and sugary foods.</p>
+                        <p>Stay consistent with your exercise routine and aim for at least 10,000 steps per day.</p>
+                        <div class="button-container">
+                            <button class="accept-button" onclick="startChallenge('challenge5-counter', this, 15)">Accept Challenge</button>
+                            <div class="days-counter" id="challenge5-counter"></div>
+                        </div>
+                    </div>
+
+                    <div class="challenge">
+                        <h3>5-Day Plan</h3>
+                        <p>Drink plenty of water throughout the day to stay hydrated.</p>
+                        <p>Incorporate strength training exercises to maintain muscle mass.</p>
+                        <p>Keep a food diary to track your calorie intake and identify areas for improvement.</p>
+                        <div class="button-container">
+                            <button class="accept-button" onclick="startChallenge('challenge6-counter', this, 5)">Accept Challenge</button>
+                            <div class="days-counter" id="challenge6-counter"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script>
+        function startChallenge(counterId, button, totalDays) {
+            var counter = document.getElementById(counterId);
+            var startDate = new Date();
+            var endDate = new Date(startDate.getTime() + totalDays * 24 * 60 * 60 * 1000);
+            var intervalId;
+
+            button.disabled = true;
+            button.textContent = "Challenge in Progress";
+
+            intervalId = setInterval(function() {
+                var currentDate = new Date();
+                var remainingTime = endDate - currentDate;
+                var remainingDays = Math.floor(remainingTime / (24 * 60 * 60 * 1000)) + 1;
+
+                if (remainingDays >= 0) {
+                    counter.textContent = "Day " + (totalDays - remainingDays + 1) + " / " + totalDays;
+                } else {
+                    clearInterval(intervalId);
+                    button.disabled = false;
+                    button.textContent = "Challenge Completed";
+                    counter.textContent = "Day " + totalDays + " / " + totalDays;
+                }
+            }, 1000); // Update every 1 second
+        }
+    </script> -->
+    <!-- Add this script at the end of your HTML body, after your current script -->
+    <script>
+        // Retrieve stored progress data from local storage
+        const storedProgress = JSON.parse(localStorage.getItem('challengeProgress')) || {};
+
+        function startChallenge(counterId, button, totalDays) {
+            var counter = document.getElementById(counterId);
+            var startDate = new Date();
+            var endDate = new Date(startDate.getTime() + totalDays * 24 * 60 * 60 * 1000);
+            var intervalId;
+
+            button.disabled = true;
+            button.textContent = "Challenge in Progress";
+
+            intervalId = setInterval(function() {
+                var currentDate = new Date();
+                var remainingTime = endDate - currentDate;
+                var remainingDays = Math.floor(remainingTime / (24 * 60 * 60 * 1000)) + 1;
+
+                if (remainingDays >= 0) {
+                    counter.textContent = "Day " + (totalDays - remainingDays + 1) + " / " + totalDays;
+
+                    // Store the challenge progress in local storage
+                    storedProgress[counterId] = totalDays - remainingDays + 1;
+                    localStorage.setItem('challengeProgress', JSON.stringify(storedProgress));
+                } else {
+                    clearInterval(intervalId);
+                    button.disabled = false;
+                    button.textContent = "Challenge Completed";
+                    counter.textContent = "Day " + totalDays + " / " + totalDays;
+
+                    // Remove the challenge progress from local storage when completed
+                    delete storedProgress[counterId];
+                    localStorage.setItem('challengeProgress', JSON.stringify(storedProgress));
+                }
+            }, 1000); // Update every 1 second
+        }
+
+        // Initialize challenge counters based on stored progress
+        document.addEventListener('DOMContentLoaded', function() {
+            Object.keys(storedProgress).forEach(function(counterId) {
+                const counter = document.getElementById(counterId);
+                counter.textContent = "Day " + storedProgress[counterId] + " / " + totalDays; // You need to adjust `totalDays` accordingly
+            });
+        });
+    </script>
+
+</body>
+
+</html>
